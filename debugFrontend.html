@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Frontend Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: #10b981; font-weight: bold; }
+        .error { color: #ef4444; font-weight: bold; }
+        pre {
+            background: #1e293b;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Frontend API Connection Debugger</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Fetch Publications</h2>
+        <button onclick="testPublications()">Run Test</button>
+        <div id="pub-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Fetch People</h2>
+        <button onclick="testPeople()">Run Test</button>
+        <div id="people-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Fetch News</h2>
+        <button onclick="testNews()">Run Test</button>
+        <div id="news-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Fetch Research Areas</h2>
+        <button onclick="testResearch()">Run Test</button>
+        <div id="research-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 5: Check API Base URL</h2>
+        <button onclick="testBaseURL()">Run Test</button>
+        <div id="url-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Run All Tests</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        async function testPublications() {
+            const result = document.getElementById('pub-result');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/publications`);
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <p class="success">✅ Success! Found ${data.length} publications</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                    <p>Make sure server is running: npm start</p>
+                `;
+            }
+        }
+
+        async function testPeople() {
+            const result = document.getElementById('people-result');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/people`);
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <p class="success">✅ Success! Found ${data.length} people</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testNews() {
+            const result = document.getElementById('news-result');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/news`);
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <p class="success">✅ Success! Found ${data.length} news items</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testResearch() {
+            const result = document.getElementById('research-result');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/research-areas`);
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <p class="success">✅ Success! Found ${data.length} research areas</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testBaseURL() {
+            const result = document.getElementById('url-result');
+            result.innerHTML = `
+                <p>API Base URL: <code>${API_BASE_URL}</code></p>
+                <p>Current Page URL: <code>${window.location.href}</code></p>
+                <p>Protocol: <code>${window.location.protocol}</code></p>
+            `;
+        }
+
+        async function runAllTests() {
+            console.log('Running all tests...');
+            await testPublications();
+            await testPeople();
+            await testNews();
+            await testResearch();
+            await testBaseURL();
+            console.log('All tests complete!');
+        }
+
+        // Auto-run on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded. API Base URL:', API_BASE_URL);
+            console.log('Run tests by clicking buttons above');
+        });
+    </script>
+</body>
+</html>

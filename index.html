@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Green Chemistry Research Group | NIT Bhopal</title>
+    <style>
+                /* ========================================
+        SIMPLIFIED WEBSITE STYLES
+        Easy to customize and understand
+        ======================================== */
+
+        /* ===== 1. BASIC RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Main Colors - Change these to customize your site! */
+            --primary-color: #1a2332;
+            --secondary-color: #2c4a6e;
+            --accent-color: #3b82f6;
+            --accent-light: #60a5fa;
+            
+            /* Background Colors */
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            
+            /* Text Colors */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            
+            /* Other Colors */
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== 2. WELCOME SCREEN ===== */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-in-out 2.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            animation: welcomeSlide 1s ease-out;
+        }
+
+        @keyframes welcomeSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-content h1 {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .welcome-content p {
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+
+        .welcome-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3em;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        /* ===== 3. LOADING OVERLAY ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== 4. HEADER & NAVIGATION ===== */
+        header {
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 18px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Logo Section */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .manit-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .group-identity {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .group-logo {
+            max-width: 450px;
+            max-height: 110px;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.9em;
+            margin-top: 5px;
+            color: var(--accent-light);
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent-light);
+            background: rgba(96, 165, 250, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* ===== 5. HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            animation: heroSlide 1s ease-out 3.5s backwards;
+        }
+
+        @keyframes heroSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== 6. MAIN CONTENT ===== */
+        main {
+            padding: 80px 0;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.4em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* ===== 7. RESEARCH CARDS ===== */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .research-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .research-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .research-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .research-detail-card {
+            background: white;
+            padding: 50px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .research-detail-card:hover {
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            transform: translateX(5px);
+        }
+
+        .research-detail-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* ===== 8. NEWS SECTION ===== */
+        .news-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .news-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .news-item:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .news-date {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* ===== 9. PEOPLE CARDS ===== */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .person-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .person-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .person-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            overflow: hidden;
+        }
+
+        .person-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .person-role {
+            color: var(--text-light);
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .person-email {
+            font-size: 0.9em;
+            color: var(--accent-color);
+        }
+
+        /* ===== 10. PUBLICATIONS ===== */
+        .publication-item {
+            padding: 30px;
+            margin-bottom: 25px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .publication-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pub-authors {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .pub-title {
+            font-style: italic;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .pub-journal {
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        /* ===== 11. CONTACT SECTION ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin-bottom: 18px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            min-width: 90px;
+        }
+
+        /* ===== 12. FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95em;
+            line-height: 2;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ===== 13. PAGE NAVIGATION ===== */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* ===== 14. ADMIN SECTION ===== */
+        .admin-login {
+            max-width: 450px;
+            margin: 100px auto;
+            padding: 50px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .admin-login h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .admin-login h2::after {
+            display: none;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px;
+        }
+
+        .form-group input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Image Previews */
+        .image-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .logo-preview {
+            max-width: 400px;
+            max-height: 120px;
+            object-fit: contain;
+            margin-top: 10px;
+            display: none;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            padding: 15px;
+            background: var(--bg-light);
+        }
+
+        .logo-preview.show {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-submit {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--success-color), #34d399);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            justify-self: start;
+        }
+
+        .btn-logout {
+            padding: 10px 25px;
+            background: linear-gradient(135deg, var(--error-color), #f87171);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 30px;
+        }
+
+        .btn-delete {
+            background: var(--error-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            display: none;
+        }
+
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .admin-tab.active {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+        }
+
+        .admin-section {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        /* Messages */
+        .success-message,
+        .error-message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .success-message.show,
+        .error-message.show {
+            display: block;
+        }
+
+        /* ===== 15. RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .welcome-content h1 {
+                font-size: 2.5em;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 20px;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2em;
+            }
+            
+            .research-grid,
+            .people-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .manit-logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .logo h1 {
+                font-size: 1.6em;
+            }
+            
+            .logo p {
+                font-size: 0.85em;
+            }
+            
+            .group-logo {
+                max-width: 250px;
+                max-height: 60px;
+            }
+            
+            .logo {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
+    <div id="welcome-screen"><div class="welcome-content"><div class="welcome-logo">🎓</div><h1>Welcome to</h1><p>NIT BHOPAL</p></div></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Maulana_Azad_National_Institute_of_Technology_Logo.png" alt="MANIT Logo" class="manit-logo">
+                    <div class="group-identity">
+                        <img id="groupLogoImg" class="group-logo" style="display: none;" alt="Research Group Logo">
+                        <h1 id="siteTitle" style="display: block;">Green Chemistry Research Group</h1>
+                        <p>Department of Chemistry | NIT Bhopal</p>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="research">Research</a></li>
+                        <li><a href="#" class="nav-link" data-page="people">People</a></li>
+                        <li><a href="#" class="nav-link" data-page="publications">Publications</a></li>
+                        <li><a href="#" class="nav-link" data-page="news">News</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="home" class="page-content active">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 id="heroTitle">Advancing Sustainable Chemistry</h2>
+                    <p id="heroDescription">Pioneering research in green chemistry, organocatalysis, and physical organic chemistry to develop environmentally benign chemical processes for a sustainable future.</p>
+                </div>
+            </div>
+        </div>
+        <main>
+            <div class="container">
+                <section id="about">
+                    <h2>About Our Research</h2>
+                    <p id="aboutParagraph1">The Green Chemistry Research Group is dedicated to developing innovative chemical methodologies that minimize environmental impact while maximizing efficiency and selectivity.</p>
+                    <p id="aboutParagraph2">We focus on designing sustainable synthetic routes, understanding reaction mechanisms at a molecular level, and developing novel catalytic systems.</p>
+                    <div class="research-grid" id="homeResearchGrid"></div>
+                </section>
+                <section id="latestNews">
+                    <h2>Latest News</h2>
+                    <div class="news-grid" id="homeNewsGrid"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="research" class="page-content">
+        <main><div class="container"><section><h2>Research Areas</h2><p>Our research program encompasses multiple interconnected themes in green chemistry, organocatalysis, and sustainable synthetic methodologies.</p><div id="researchPageContent"></div></section></div></main>
+    </div>
+
+    <div id="people" class="page-content">
+        <main>
+            <div class="container">
+                <section id="piSection">
+                    <h2>Principal Investigator</h2>
+                    <div class="people-grid" id="piGrid"></div>
+                </section>
+                <section id="postdocSection"><h2>Postdoctoral Researchers</h2><div class="people-grid" id="postdocGrid"></div></section>
+                <section id="phdSection"><h2>PhD Students</h2><div class="people-grid" id="phdGrid"></div></section>
+                <section id="techSection"><h2>M.Sc. Students</h2><div class="people-grid" id="techGrid"></div></section>
+            </div>
+        </main>
+    </div>
+
+    <div id="publications" class="page-content">
+        <main><div class="container"><section id="publicationsSection"><h2>Selected Publications</h2></section></div></main>
+    </div>
+
+    <div id="news" class="page-content">
+        <main>
+            <div class="container">
+                <section>
+                    <h2>Latest News & Updates</h2>
+                    <p>Stay updated with the latest developments, achievements, and activities from our research group.</p>
+                    <div class="news-grid" id="allNewsGrid"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="contact" class="page-content">
+        <main>
+            <div class="container">
+                <section>
+                    <h2>Contact Information</h2>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h3>Office Location</h3>
+                            <div class="contact-item"><span class="contact-label">Building:</span><span>Chemistry Research Building</span></div>
+                            <div class="contact-item"><span class="contact-label">Room:</span><span>CR-412</span></div>
+                            <div class="contact-item"><span class="contact-label">Address:</span><span>NIT Bhopal, MP 462003, India</span></div>
+                        </div>
+                        <div class="contact-card">
+                            <h3>Get in Touch</h3>
+                            <div class="contact-item"><span class="contact-label">Email:</span><span>j.walsh@nitbhopal.ac.in</span></div>
+                            <div class="contact-item"><span class="contact-label">Phone:</span><span>+91 755 404 1200</span></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="admin" class="page-content">
+        <main>
+            <div class="container">
+                <div id="adminLogin" class="admin-login">
+                    <h2>🔐 Admin Login</h2>
+                    <div class="error-message" id="loginError"></div>
+                    <form onsubmit="adminLogin(event)">
+                        <div class="form-group"><label>Email</label><input type="email" id="adminEmail" required></div>
+                        <div class="form-group"><label>Password</label><input type="password" id="adminPassword" required></div>
+                        <button type="submit" class="btn-login" id="loginBtn">Login</button>
+                    </form>
+                </div>
+
+                <div id="adminDashboard" class="admin-dashboard">
+                    <button class="btn-logout" onclick="adminLogout()">Logout</button>
+                    <div style="clear: both;"></div>
+                    <h2>Admin Dashboard</h2>
+                    <div class="admin-tabs" style="margin-top: 40px;">
+                        <div class="admin-tab active" onclick="showAdminSection('home')">Home Page</div>
+                        <div class="admin-tab" onclick="showAdminSection('research')">Research Areas</div>
+                        <div class="admin-tab" onclick="showAdminSection('publications')">Publications</div>
+                        <div class="admin-tab" onclick="showAdminSection('people')">People</div>
+                        <div class="admin-tab" onclick="showAdminSection('news')">News</div>
+                    </div>
+
+                    <div id="adminHome" class="admin-section active">
+                        <div class="success-message" id="homeSuccess"></div>
+                        <div class="error-message" id="homeError"></div>
+                        <h3>Edit Home Page Content</h3>
+                        <form class="admin-form" onsubmit="updateHomePage(event)">
+                            <div class="form-group">
+                                <label>Research Group Identity</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="identityType" value="text" id="identityTypeText" checked onchange="toggleIdentityType()">
+                                        <span>Use Text Name</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="identityType" value="logo" id="identityTypeLogo" onchange="toggleIdentityType()">
+                                        <span>Use Logo Image</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="siteTitleGroup">
+                                <label>Research Group Name</label>
+                                <input type="text" id="siteTitleInput" placeholder="Green Chemistry Research Group">
+                            </div>
+                            <div class="form-group" id="groupLogoGroup" style="display: none;">
+                                <label>Upload Research Group Logo</label>
+                                <p style="color: var(--text-light); font-size: 0.9em; margin-bottom: 10px;">Recommended: Transparent PNG, minimum 400px width, landscape orientation for best results</p>
+                                <input type="file" id="groupLogoInput" accept="image/*" onchange="previewImage(this, 'groupLogoPreview')">
+                                <img id="groupLogoPreview" class="logo-preview">
+                            </div>
+                            <div class="form-group"><label>Hero Title</label><input type="text" id="heroTitleInput" required></div>
+                            <div class="form-group"><label>Hero Description</label><textarea id="heroDescriptionInput" required></textarea></div>
+                            <div class="form-group"><label>About - Paragraph 1</label><textarea id="aboutParagraph1Input" required></textarea></div>
+                            <div class="form-group"><label>About - Paragraph 2</label><textarea id="aboutParagraph2Input" required></textarea></div>
+                            <button type="submit" class="btn-submit" id="homeSubmitBtn">Update Home Page</button>
+                        </form>
+                    </div>
+
+                    <div id="adminResearch" class="admin-section">
+                        <div class="success-message" id="researchSuccess"></div>
+                        <div class="error-message" id="researchError"></div>
+                        <h3>Existing Research Areas</h3>
+                        <div id="researchList" style="margin-bottom: 40px;"></div>
+                        <h3>Add New Research Area</h3>
+                        <form class="admin-form" onsubmit="addResearchArea(event)">
+                            <div class="form-group"><label>Title</label><input type="text" id="researchTitle" required></div>
+                            <div class="form-group"><label>Description</label><textarea id="researchDescription" required></textarea></div>
+                            <div class="form-group"><label>Photo (optional)</label><input type="file" id="researchPhoto" accept="image/*" onchange="previewImage(this, 'researchPhotoPreview')"><img id="researchPhotoPreview" class="image-preview"></div>
+                            <button type="submit" class="btn-submit" id="researchSubmitBtn">Add Research Area</button>
+                        </form>
+                    </div>
+
+                    <div id="adminPublications" class="admin-section">
+                        <div class="success-message" id="pubSuccess"></div>
+                        <div class="error-message" id="pubError"></div>
+                        <h3>Existing Publications</h3>
+                        <div id="pubList" style="margin-bottom: 40px;"></div>
+                        <h3>Add New Publication</h3>
+                        <form class="admin-form" onsubmit="addPublication(event)">
+                            <div class="form-group"><label>Authors</label><input type="text" id="pubAuthors" required></div>
+                            <div class="form-group"><label>Title</label><input type="text" id="pubTitle" required></div>
+                            <div class="form-group"><label>Journal Details</label><input type="text" id="pubJournal" required></div>
+                            <div class="form-group"><label>Year</label><select id="pubYear" required></select></div>
+                            <button type="submit" class="btn-submit" id="pubSubmitBtn">Add Publication</button>
+                        </form>
+                    </div>
+
+                    <div id="adminPeople" class="admin-section">
+                        <div class="success-message" id="peopleSuccess"></div>
+                        <div class="error-message" id="peopleError"></div>
+                        <h3>Existing Team Members</h3>
+                        <h4 style="margin-top: 30px;">Principal Investigator</h4><div id="piList" style="margin-bottom: 30px;"></div>
+                        <h4>Postdoctoral Researchers</h4><div id="postdocList" style="margin-bottom: 30px;"></div>
+                        <h4>PhD Students</h4><div id="phdList" style="margin-bottom: 30px;"></div>
+                        <h4>M.Sc. Students</h4><div id="technicianList" style="margin-bottom: 40px;"></div>
+                        <h3>Add Team Member</h3>
+                        <form class="admin-form" onsubmit="addPerson(event)">
+                            <div class="form-group"><label>Full Name</label><input type="text" id="personName" required></div>
+                            <div class="form-group"><label>Role/Position</label><input type="text" id="personRole" required></div>
+                            <div class="form-group"><label>Email</label><input type="email" id="personEmail" required></div>
+                            <div class="form-group"><label>Category</label><select id="personCategory"><option value="pi">Principal Investigator</option><option value="postdoc">Postdoctoral Researcher</option><option value="phd">PhD Student</option><option value="technician">Research Technician/Visitor</option></select></div>
+                            <div class="form-group"><label>Photo (optional)</label><input type="file" id="personPhoto" accept="image/*" onchange="previewImage(this, 'personPhotoPreview')"><img id="personPhotoPreview" class="image-preview"></div>
+                            <button type="submit" class="btn-submit" id="personSubmitBtn">Add Team Member</button>
+                        </form>
+                    </div>
+
+                    <div id="adminNews" class="admin-section">
+                        <div class="success-message" id="newsSuccess"></div>
+                        <div class="error-message" id="newsError"></div>
+                        <h3>Existing News Items</h3>
+                        <div id="newsListAdmin" style="margin-bottom: 40px;"></div>
+                        <h3>Add News Item</h3>
+                        <form class="admin-form" onsubmit="addNews(event)">
+                            <div class="form-group"><label>Date</label><input type="date" id="newsDate" required></div>
+                            <div class="form-group"><label>Headline</label><input type="text" id="newsHeadline" required></div>
+                            <div class="form-group"><label>Content</label><textarea id="newsContent" required></textarea></div>
+                            <div class="form-group"><label>Tag</label><select id="newsTag"><option value="Funding">Funding</option><option value="Award">Award</option><option value="Publication">Publication</option><option value="Conference">Conference</option><option value="Outreach">Outreach</option><option value="Team">Team</option></select></div>
+                            <button type="submit" class="btn-submit" id="newsSubmitBtn">Add News Item</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>RPP Research Group</h4><p>Department of Chemistry<br>Maulana Azad<br>National Institute of Technology<br>Bhopal, MP 462003<br>India</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><p><a href="https://www.manit.ac.in/" target="_blank">NIT Bhopal Homepage</a><br><a href="#">Department of Chemistry</a></p></div>
+                <div class="footer-section"><h4>Resources</h4><p><a href="#">Safety Protocols</a><br><a href="#">Equipment Booking</a></p></div>
+                <div class="footer-section"><h4>Connect</h4><p>Email: j.walsh@nitbhopal.ac.in<br>Phone: +91 755 404 1200</p></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 Green Chemistry Research Group, NIT Bhopal. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        let isLoggedIn = false;
+        let homePageData = {
+            identityType: 'text',
+            siteTitle: 'Green Chemistry Research Group',
+            groupLogo: null,
+            heroTitle: 'Advancing Sustainable Chemistry',
+            heroDescription: 'Pioneering research in green chemistry, organocatalysis, and physical organic chemistry to develop environmentally benign chemical processes for a sustainable future.',
+            aboutParagraph1: 'The Green Chemistry Research Group is dedicated to developing innovative chemical methodologies that minimize environmental impact while maximizing efficiency and selectivity.',
+            aboutParagraph2: 'We focus on designing sustainable synthetic routes, understanding reaction mechanisms at a molecular level, and developing novel catalytic systems.'
+        };
+
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        const TokenManager = {
+            isAuthenticated: () => !!localStorage.getItem('authToken'),
+            setToken: (token) => localStorage.setItem('authToken', token),
+            getToken: () => localStorage.getItem('authToken'),
+            removeToken: () => localStorage.removeItem('authToken')
+        };
+
+        const API = {
+    async request(method, endpoint, data = null) {
+        const options = {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+                ...(TokenManager.isAuthenticated() && { 'Authorization': `Bearer ${TokenManager.getToken()}` })
+            }
+        };
+        if (data) options.body = JSON.stringify(data);
+        try {
+            console.log('Fetching:', API_BASE_URL + endpoint);
+            const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `API Error: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('API Error:', error);
+            throw error;
+        }
+    },
+    getResearchAreas: () => API.request('GET', '/research-areas'),
+    addResearchArea: (data) => API.request('POST', '/research-areas', data),
+    deleteResearchArea: (id) => API.request('DELETE', `/research-areas/${id}`),
+    getPublications: () => API.request('GET', '/publications'),
+    addPublication: (data) => API.request('POST', '/publications', data),
+    deletePublication: (id) => API.request('DELETE', `/publications/${id}`),
+    getPeople: () => API.request('GET', '/people'),
+    addPerson: (data) => API.request('POST', '/people', data),
+    deletePerson: (id) => API.request('DELETE', `/people/${id}`),
+    getNews: () => API.request('GET', '/news/latest'),  // For home page - latest 5
+    getAllNews: () => API.request('GET', '/news'),      // For news page - all news
+    addNews: (data) => API.request('POST', '/news', data),
+    deleteNews: (id) => API.request('DELETE', `/news/${id}`),
+    getHomePage: () => API.request('GET', '/homepage'),
+    updateHomePage: (data) => API.request('PUT', '/homepage', data),
+    login: (email, password) => API.request('POST', '/auth/login', { email, password }),
+    verifyToken: () => API.request('GET', '/auth/verify')
+};
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            setTimeout(() => { document.getElementById('welcome-screen').style.display = 'none'; }, 3500);
+            populateYearDropdown();
+            setupHeaderScroll();
+            setupNavigation();
+            setupAdminShortcut();
+            if (TokenManager.isAuthenticated()) {
+                try {
+                    await API.verifyToken();
+                    isLoggedIn = true;
+                } catch (error) {
+                    TokenManager.removeToken();
+                }
+            }
+            await loadAllData();
+            await loadHomePageData();
+        });
+
+        function setupAdminShortcut() {
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'l') {
+                    e.preventDefault();
+                    openAdminPanel();
+                }
+            });
+        }
+
+        function openAdminPanel() {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('admin').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (isLoggedIn) {
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminDashboard').classList.add('active');
+                loadAdminResearchAreas();
+                loadAdminPublications();
+                loadAdminPeople();
+                loadAdminHomeData();
+                loadAdminNews();
+            }
+        }
+
+        function setupHeaderScroll() {
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.pageYOffset > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page-content');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = link.getAttribute('data-page');
+            
+            // Auto-logout when navigating away from admin panel
+            if (isLoggedIn && pageId !== 'admin') {
+                console.log('Navigating away from admin - logging out...');
+                // Perform logout
+                isLoggedIn = false;
+                TokenManager.removeToken();
+                
+                // Clear login form
+                document.getElementById('adminEmail').value = '';
+                document.getElementById('adminPassword').value = '';
+                
+                // Hide dashboard and show login screen
+                document.getElementById('adminLogin').style.display = 'block';
+                document.getElementById('adminDashboard').classList.remove('active');
+                
+                // Clear any error/success messages
+                document.getElementById('loginError').classList.remove('show');
+            }
+            
+            navLinks.forEach(l => l.classList.remove('active'));
+            pages.forEach(p => p.classList.remove('active'));
+            link.classList.add('active');
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('mainNav').classList.remove('active');
+            
+            // Reload data when navigating to ensure fresh content
+            if (pageId !== 'admin') {
+                loadAllData();
+            }
+        });
+    });
+}
+
+        function toggleMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+
+        function toggleIdentityType() {
+            const isText = document.getElementById('identityTypeText').checked;
+            document.getElementById('siteTitleGroup').style.display = isText ? 'block' : 'none';
+            document.getElementById('groupLogoGroup').style.display = isText ? 'none' : 'block';
+        }
+
+        function populateYearDropdown() {
+            const yearSelect = document.getElementById('pubYear');
+            const currentYear = new Date().getFullYear();
+            yearSelect.innerHTML = '';
+            for (let year = currentYear; year >= 2020; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) option.selected = true;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        async function adminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const errorDiv = document.getElementById('loginError');
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+            errorDiv.classList.remove('show');
+            try {
+                const result = await API.login(email, password);
+                if (result.token) {
+                    TokenManager.setToken(result.token);
+                    isLoggedIn = true;
+                    showAdminDashboard();
+                } else {
+                    throw new Error('Invalid credentials');
+                }
+            } catch (error) {
+                errorDiv.textContent = error.message || 'Login failed';
+                errorDiv.classList.add('show');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Login';
+            }
+        }
+
+        function adminLogout() {
+    console.log('Manual logout triggered');
+    isLoggedIn = false;
+    TokenManager.removeToken();
+    
+    // Clear login form
+    document.getElementById('adminEmail').value = '';
+    document.getElementById('adminPassword').value = '';
+    
+    // Hide dashboard and show login screen
+    showAdminLogin();
+    
+    // Clear any error/success messages
+    document.getElementById('loginError').classList.remove('show');
+    
+    // Navigate back to home page
+    document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('home').classList.add('active');
+    document.querySelector('.nav-link[data-page="home"]').classList.add('active');
+    
+    // Reload all data to reflect changes
+    loadAllData();
+}
+
+        function showAdminLogin() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('adminDashboard').classList.remove('active');
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('adminLogin').style.display = 'none';
+            document.getElementById('adminDashboard').classList.add('active');
+            loadAdminResearchAreas();
+            loadAdminPublications();
+            loadAdminPeople();
+            loadAdminHomeData();
+            loadAdminNews();
+        }
+
+        function showAdminSection(section) {
+            document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+            const clickedTab = Array.from(document.querySelectorAll('.admin-tab')).find(tab => 
+                tab.textContent.toLowerCase().includes(section.toLowerCase()) || 
+                (section === 'home' && tab.textContent.includes('Home Page'))
+            );
+            if (clickedTab) clickedTab.classList.add('active');
+            const sectionMap = { 
+                'home': 'adminHome', 
+                'research': 'adminResearch',
+                'publications': 'adminPublications', 
+                'people': 'adminPeople', 
+                'news': 'adminNews'
+            };
+            document.getElementById(sectionMap[section]).classList.add('active');
+            
+            if (section === 'research') loadAdminResearchAreas();
+            if (section === 'publications') loadAdminPublications();
+            if (section === 'people') loadAdminPeople();
+            if (section === 'news') loadAdminNews();
+        }
+
+        async function loadAllData() {
+            showLoading(true);
+            try {
+                await Promise.all([
+                    loadPublications(), 
+                    loadPeople(), 
+                    loadLatestNews(),
+                    loadAllNews(), 
+                    loadResearchAreas(), 
+                    loadHomePageData()
+                ]);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function loadHomePageData() {
+            try {
+                const data = await API.getHomePage();
+                if (data && data.data) {
+                    homePageData = {
+                        identityType: data.data.identityType || 'text',
+                        siteTitle: data.data.siteTitle || 'Green Chemistry Research Group',
+                        groupLogo: data.data.groupLogo || null,
+                        heroTitle: data.data.heroTitle,
+                        heroDescription: data.data.heroDescription,
+                        aboutParagraph1: data.data.aboutParagraph1,
+                        aboutParagraph2: data.data.aboutParagraph2
+                    };
+                }
+            } catch (error) {
+                console.log('Using default home page data');
+            }
+            updateHomePageDisplay();
+        }
+
+        function updateHomePageDisplay() {
+            const siteTitle = document.getElementById('siteTitle');
+            const groupLogoImg = document.getElementById('groupLogoImg');
+            const pageTitle = document.getElementById('pageTitle');
+            const heroTitle = document.getElementById('heroTitle');
+            const heroDesc = document.getElementById('heroDescription');
+            const aboutP1 = document.getElementById('aboutParagraph1');
+            const aboutP2 = document.getElementById('aboutParagraph2');
+            
+            // Always update both, then show/hide based on identityType
+            if (siteTitle) {
+                siteTitle.textContent = homePageData.siteTitle || 'Green Chemistry Research Group';
+            }
+            
+            if (groupLogoImg && homePageData.groupLogo) {
+                groupLogoImg.src = homePageData.groupLogo;
+            }
+            
+            // Show logo or text based on identityType
+            if (homePageData.identityType === 'logo' && homePageData.groupLogo) {
+                if (siteTitle) siteTitle.style.display = 'none';
+                if (groupLogoImg) groupLogoImg.style.display = 'block';
+            } else {
+                if (groupLogoImg) groupLogoImg.style.display = 'none';
+                if (siteTitle) siteTitle.style.display = 'block';
+            }
+            
+            if (pageTitle) pageTitle.textContent = `${homePageData.siteTitle || 'Green Chemistry Research Group'} | NIT Bhopal`;
+            if (heroTitle) heroTitle.textContent = homePageData.heroTitle;
+            if (heroDesc) heroDesc.textContent = homePageData.heroDescription;
+            if (aboutP1) aboutP1.textContent = homePageData.aboutParagraph1;
+            if (aboutP2) aboutP2.textContent = homePageData.aboutParagraph2;
+        }
+
+        function loadAdminHomeData() {
+            const isLogo = homePageData.identityType === 'logo';
+            document.getElementById('identityTypeText').checked = !isLogo;
+            document.getElementById('identityTypeLogo').checked = isLogo;
+            toggleIdentityType();
+            
+            document.getElementById('siteTitleInput').value = homePageData.siteTitle || 'Green Chemistry Research Group';
+            
+            // Clear and reset logo preview
+            const logoInput = document.getElementById('groupLogoInput');
+            const preview = document.getElementById('groupLogoPreview');
+            logoInput.value = ''; // Clear file input
+            
+            if (homePageData.groupLogo) {
+                preview.src = homePageData.groupLogo;
+                preview.classList.add('show');
+            } else {
+                preview.src = '';
+                preview.classList.remove('show');
+            }
+            
+            document.getElementById('heroTitleInput').value = homePageData.heroTitle;
+            document.getElementById('heroDescriptionInput').value = homePageData.heroDescription;
+            document.getElementById('aboutParagraph1Input').value = homePageData.aboutParagraph1;
+            document.getElementById('aboutParagraph2Input').value = homePageData.aboutParagraph2;
+        }
+
+        async function updateHomePage(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('homeSubmitBtn');
+            const successMsg = document.getElementById('homeSuccess');
+            const errorMsg = document.getElementById('homeError');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Updating...';
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            try {
+                const isLogo = document.getElementById('identityTypeLogo').checked;
+                let logoData = homePageData.groupLogo; // Keep existing logo by default
+                
+                if (isLogo) {
+                    const logoInput = document.getElementById('groupLogoInput');
+                    if (logoInput.files && logoInput.files[0]) {
+                        // New logo uploaded
+                        logoData = await fileToBase64(logoInput.files[0]);
+                    } else if (!logoData) {
+                        // No existing logo and no new logo uploaded
+                        throw new Error('Please upload a logo image');
+                    }
+                    // If logoData exists from before and no new file, keep the old logo
+                }
+                
+                const data = {
+                    identityType: isLogo ? 'logo' : 'text',
+                    siteTitle: document.getElementById('siteTitleInput').value.trim(),
+                    groupLogo: isLogo ? logoData : null,
+                    heroTitle: document.getElementById('heroTitleInput').value.trim(),
+                    heroDescription: document.getElementById('heroDescriptionInput').value.trim(),
+                    aboutParagraph1: document.getElementById('aboutParagraph1Input').value.trim(),
+                    aboutParagraph2: document.getElementById('aboutParagraph2Input').value.trim()
+                };
+                
+                if (!data.heroTitle || !data.heroDescription || !data.aboutParagraph1 || !data.aboutParagraph2) {
+                    throw new Error('All fields required');
+                }
+                
+                await API.updateHomePage(data);
+                homePageData = data;
+                updateHomePageDisplay();
+                successMsg.textContent = 'Home page updated successfully!';
+                successMsg.classList.add('show');
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (error) {
+                errorMsg.textContent = error.message || 'Failed to update home page';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Update Home Page';
+            }
+        }
+
+        async function loadResearchAreas() {
+            const homeGrid = document.getElementById('homeResearchGrid');
+            const researchPageContent = document.getElementById('researchPageContent');
+            if (homeGrid) homeGrid.innerHTML = '';
+            if (researchPageContent) researchPageContent.innerHTML = '';
+            
+            try {
+                const data = await API.getResearchAreas();
+                const researchAreas = Array.isArray(data) ? data : data.data || [];
+                
+                if (researchAreas.length === 0) {
+                    if (homeGrid) homeGrid.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No research areas added yet.</p>';
+                    if (researchPageContent) researchPageContent.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No research areas added yet.</p>';
+                    return;
+                }
+                
+                // Home page - compact cards
+                researchAreas.forEach((area) => {
+                    const card = document.createElement('div');
+                    card.className = 'research-card';
+                    card.innerHTML = `
+                        ${area.photo ? `<img src="${escapeHtml(area.photo)}" class="research-card-image" alt="${escapeHtml(area.title)}">` : ''}
+                        <h3>${escapeHtml(area.title)}</h3>
+                        <p>${escapeHtml(area.description)}</p>
+                    `;
+                    if (homeGrid) homeGrid.appendChild(card);
+                });
+                
+                // Research page - detailed cards
+                researchAreas.forEach((area) => {
+                    const detailCard = document.createElement('div');
+                    detailCard.className = 'research-detail-card';
+                    detailCard.innerHTML = `
+                        ${area.photo ? `<img src="${escapeHtml(area.photo)}" class="research-detail-image" alt="${escapeHtml(area.title)}">` : ''}
+                        <h3>${escapeHtml(area.title)}</h3>
+                        <p>${escapeHtml(area.description)}</p>
+                    `;
+                    if (researchPageContent) researchPageContent.appendChild(detailCard);
+                });
+            } catch (error) {
+                console.error('Error loading research areas:', error);
+                if (homeGrid) homeGrid.innerHTML = '<p style="color: var(--error);">Error loading research areas</p>';
+                if (researchPageContent) researchPageContent.innerHTML = '<p style="color: var(--error);">Error loading research areas</p>';
+            }
+        }
+
+        async function loadAdminResearchAreas() {
+            if (!isLoggedIn) return;
+            const list = document.getElementById('researchList');
+            list.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            try {
+                const data = await API.getResearchAreas();
+                const researchAreas = Array.isArray(data) ? data : data.data || [];
+                list.innerHTML = '';
+                
+                if (researchAreas.length === 0) {
+                    list.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No research areas added yet.</p>';
+                    return;
+                }
+                
+                researchAreas.forEach(area => {
+                    const div = document.createElement('div');
+                    div.style.cssText = 'background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 15px;';
+                    div.innerHTML = `
+                        ${area.photo ? `<img src="${escapeHtml(area.photo)}" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" alt="${escapeHtml(area.title)}">` : ''}
+                        <h4 style="margin-bottom: 10px; color: var(--primary);">${escapeHtml(area.title)}</h4>
+                        <p style="margin: 0 0 15px 0; color: var(--text-light);">${escapeHtml(area.description)}</p>
+                        <button class="btn-delete" onclick="deleteResearchArea('${area._id}')">Delete</button>
+                    `;
+                    list.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Error loading admin research areas:', error);
+                list.innerHTML = '<p style="color: var(--error);">Error loading research areas</p>';
+            }
+        }
+
+        async function loadAdminPublications() {
+            if (!isLoggedIn) return;
+            const pubList = document.getElementById('pubList');
+            pubList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            try {
+                const data = await API.getPublications();
+                const publications = Array.isArray(data) ? data : data.data || [];
+                pubList.innerHTML = '';
+                
+                if (publications.length === 0) {
+                    pubList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No publications added yet.</p>';
+                    return;
+                }
+                
+                publications.forEach(pub => {
+                    const div = document.createElement('div');
+                    div.className = 'publication-item';
+                    div.style.marginBottom = '15px';
+                    div.innerHTML = `
+                        <div class="pub-authors">${escapeHtml(pub.authors)}</div>
+                        <div class="pub-title">"${escapeHtml(pub.title)}"</div>
+                        <div class="pub-journal">${escapeHtml(pub.journal)}</div>
+                        <button class="btn-delete" onclick="deletePublication('${pub._id}')">Delete</button>
+                    `;
+                    pubList.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Error loading admin publications:', error);
+                pubList.innerHTML = '<p style="color: var(--error);">Error loading publications</p>';
+            }
+        }
+
+        async function loadAdminPeople() {
+            if (!isLoggedIn) return;
+            const piList = document.getElementById('piList');
+            const postdocList = document.getElementById('postdocList');
+            const phdList = document.getElementById('phdList');
+            const technicianList = document.getElementById('technicianList');
+            
+            piList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            postdocList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            phdList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            technicianList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+            
+            try {
+                const data = await API.getPeople();
+                const people = Array.isArray(data) ? data : data.data || [];
+                
+                const categorized = { pi: [], postdoc: [], phd: [], technician: [] };
+                people.forEach(person => {
+                    if (categorized[person.category]) {
+                        categorized[person.category].push(person);
+                    }
+                });
+                
+                const renderPerson = (person) => {
+                    const div = document.createElement('div');
+                    div.style.cssText = 'background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 15px;';
+                    div.innerHTML = `
+                        ${person.photo ? `<img src="${escapeHtml(person.photo)}" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin-bottom: 15px;" alt="${escapeHtml(person.name)}">` : ''}
+                        <h4 style="margin: 0 0 5px 0; color: var(--primary);">${escapeHtml(person.name)}</h4>
+                        <p style="margin: 0 0 3px 0; color: var(--text-light); font-size: 0.9em;">${escapeHtml(person.role)}</p>
+                        <p style="margin: 0 0 10px 0; color: var(--accent); font-size: 0.85em;">${escapeHtml(person.email)}</p>
+                        <button class="btn-delete" onclick="deletePerson('${person._id}')">Delete</button>
+                    `;
+                    return div;
+                };
+                
+                piList.innerHTML = '';
+                if (categorized.pi.length === 0) {
+                    piList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No principal investigator added yet.</p>';
+                } else {
+                    categorized.pi.forEach(person => piList.appendChild(renderPerson(person)));
+                }
+                
+                postdocList.innerHTML = '';
+                if (categorized.postdoc.length === 0) {
+                    postdocList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No postdoctoral researchers added yet.</p>';
+                } else {
+                    categorized.postdoc.forEach(person => postdocList.appendChild(renderPerson(person)));
+                }
+                
+                phdList.innerHTML = '';
+                if (categorized.phd.length === 0) {
+                    phdList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No PhD students added yet.</p>';
+                } else {
+                    categorized.phd.forEach(person => phdList.appendChild(renderPerson(person)));
+                }
+                
+                technicianList.innerHTML = '';
+                if (categorized.technician.length === 0) {
+                    technicianList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No technicians/visitors added yet.</p>';
+                } else {
+                    categorized.technician.forEach(person => technicianList.appendChild(renderPerson(person)));
+                }
+            } catch (error) {
+                console.error('Error loading admin people:', error);
+                piList.innerHTML = '<p style="color: var(--error);">Error loading people</p>';
+                postdocList.innerHTML = '';
+                phdList.innerHTML = '';
+                technicianList.innerHTML = '';
+            }
+        }
+
+        async function loadAdminNews() {
+    if (!isLoggedIn) return;
+    const newsList = document.getElementById('newsListAdmin');
+    newsList.innerHTML = '<p style="color: var(--text-light);">Loading...</p>';
+    
+    try {
+        console.log('Loading admin news...');
+        const data = await API.getAllNews();  // Use getAllNews instead of getNews
+        console.log('Admin news data received:', data);
+        
+        const newsItems = Array.isArray(data) ? data : (data.data || []);
+        newsList.innerHTML = '';
+        
+        if (newsItems.length === 0) {
+            newsList.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No news items yet.</p>';
+            return;
+        }
+        
+        newsItems.forEach(item => {
+            const date = new Date(item.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.style.marginBottom = '15px';
+            div.innerHTML = `
+                <div class="news-date">${formattedDate}</div>
+                <h4>${escapeHtml(item.headline)}</h4>
+                <p>${escapeHtml(item.content)}</p>
+                <span class="news-tag">${escapeHtml(item.tag)}</span>
+                <br><button class="btn-delete" onclick="deleteNews('${item._id}')">Delete</button>
+            `;
+            newsList.appendChild(div);
+        });
+        
+        console.log('Admin news loaded successfully');
+    } catch (error) {
+        console.error('Error loading admin news:', error);
+        newsList.innerHTML = `<p style="color: var(--error-color);">Error loading news: ${error.message}</p>`;
+    }
+}
+
+
+        async function loadPublications() {
+            const publicationsSection = document.getElementById('publicationsSection');
+            const existingYears = publicationsSection.querySelectorAll('h3');
+            existingYears.forEach(h3 => {
+                if (h3.textContent.match(/^\d{4}$/)) {
+                    const nextDiv = h3.nextElementSibling;
+                    if (nextDiv) nextDiv.remove();
+                    h3.remove();
+                }
+            });
+            try {
+                const data = await API.getPublications();
+                const publications = Array.isArray(data) ? data : data.data || [];
+                const groupedByYear = publications.reduce((acc, pub) => {
+                    if (!acc[pub.year]) acc[pub.year] = [];
+                    acc[pub.year].push(pub);
+                    return acc;
+                }, {});
+                Object.keys(groupedByYear).sort((a, b) => b - a).forEach(year => {
+                    const yearSection = document.createElement('div');
+                    yearSection.innerHTML = `<h3 style="margin-top: 40px;">${year}</h3><div class="publication-list"></div>`;
+                    publicationsSection.appendChild(yearSection);
+                    const pubList = yearSection.querySelector('.publication-list');
+                    groupedByYear[year].forEach(pub => {
+                        const div = document.createElement('div');
+                        div.className = 'publication-item';
+                        div.innerHTML = `
+                            <div class="pub-authors">${escapeHtml(pub.authors)}</div>
+                            <div class="pub-title">"${escapeHtml(pub.title)}"</div>
+                            <div class="pub-journal">${escapeHtml(pub.journal)}</div>
+                        `;
+                        pubList.appendChild(div);
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading publications:', error);
+            }
+        }
+
+        async function loadPeople() {
+            const piGrid = document.getElementById('piGrid');
+            const postdocGrid = document.getElementById('postdocGrid');
+            const phdGrid = document.getElementById('phdGrid');
+            const techGrid = document.getElementById('techGrid');
+            
+            if (piGrid) piGrid.innerHTML = '';
+            if (postdocGrid) postdocGrid.innerHTML = '';
+            if (phdGrid) phdGrid.innerHTML = '';
+            if (techGrid) techGrid.innerHTML = '';
+            
+            try {
+                const data = await API.getPeople();
+                const people = Array.isArray(data) ? data : data.data || [];
+                
+                const renderPersonCard = (person) => {
+                    const card = document.createElement('div');
+                    card.className = 'person-card';
+                    card.innerHTML = `
+                        <div class="person-img">${person.photo ? `<img src="${escapeHtml(person.photo)}" alt="${escapeHtml(person.name)}">` : '👤'}</div>
+                        <div class="person-name">${escapeHtml(person.name)}</div>
+                        <div class="person-role">${escapeHtml(person.role)}</div>
+                        <div class="person-email">${escapeHtml(person.email)}</div>
+                    `;
+                    return card;
+                };
+                
+                people.forEach(person => {
+                    const card = renderPersonCard(person);
+                    if (person.category === 'pi' && piGrid) {
+                        piGrid.appendChild(card);
+                    } else if (person.category === 'postdoc' && postdocGrid) {
+                        postdocGrid.appendChild(card);
+                    } else if (person.category === 'phd' && phdGrid) {
+                        phdGrid.appendChild(card);
+                    } else if (person.category === 'technician' && techGrid) {
+                        techGrid.appendChild(card);
+                    }
+                });
+                
+                const piSection = document.getElementById('piSection');
+                const postdocSection = document.getElementById('postdocSection');
+                const phdSection = document.getElementById('phdSection');
+                const techSection = document.getElementById('techSection');
+                
+                if (piSection) piSection.style.display = piGrid && piGrid.children.length > 0 ? 'block' : 'none';
+                if (postdocSection) postdocSection.style.display = postdocGrid && postdocGrid.children.length > 0 ? 'block' : 'none';
+                if (phdSection) phdSection.style.display = phdGrid && phdGrid.children.length > 0 ? 'block' : 'none';
+                if (techSection) techSection.style.display = techGrid && techGrid.children.length > 0 ? 'block' : 'none';
+            } catch (error) {
+                console.error('Error loading people:', error);
+            }
+        }
+
+        async function loadLatestNews() {
+    const newsGrid = document.getElementById('homeNewsGrid');
+    if (!newsGrid) return;
+    
+    newsGrid.innerHTML = '';
+    
+    try {
+        console.log('Loading latest news for home page...');
+        const data = await API.getNews();  // This calls /news/latest
+        console.log('Latest news data received:', data);
+        
+        const newsItems = Array.isArray(data) ? data : (data.data || []);
+        
+        if (newsItems.length === 0) {
+            newsGrid.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No news items yet.</p>';
+            return;
+        }
+        
+        newsItems.forEach(item => {
+            const date = new Date(item.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.innerHTML = `
+                <div class="news-date">${formattedDate}</div>
+                <h4>${escapeHtml(item.headline)}</h4>
+                <p>${escapeHtml(item.content)}</p>
+                <span class="news-tag">${escapeHtml(item.tag)}</span>
+            `;
+            newsGrid.appendChild(div);
+        });
+        
+        console.log('Latest news loaded successfully');
+    } catch (error) {
+        console.error('Error loading latest news:', error);
+        newsGrid.innerHTML = '<p style="color: var(--error-color);">Error loading news</p>';
+    }
+}
+
+
+        async function loadAllNews() {
+    const allNewsGrid = document.getElementById('allNewsGrid');
+    if (!allNewsGrid) return;
+    
+    allNewsGrid.innerHTML = '';
+    
+    try {
+        console.log('Loading all news for news page...');
+        const data = await API.getAllNews();  // This calls /news
+        console.log('All news data received:', data);
+        
+        const newsItems = Array.isArray(data) ? data : (data.data || []);
+        
+        if (newsItems.length === 0) {
+            allNewsGrid.innerHTML = '<p style="color: var(--text-light); font-style: italic;">No news items yet.</p>';
+            return;
+        }
+        
+        newsItems.forEach(item => {
+            const date = new Date(item.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.innerHTML = `
+                <div class="news-date">${formattedDate}</div>
+                <h4>${escapeHtml(item.headline)}</h4>
+                <p>${escapeHtml(item.content)}</p>
+                <span class="news-tag">${escapeHtml(item.tag)}</span>
+            `;
+            allNewsGrid.appendChild(div);
+        });
+        
+        console.log('All news loaded successfully');
+    } catch (error) {
+        console.error('Error loading all news:', error);
+        allNewsGrid.innerHTML = '<p style="color: var(--error-color);">Error loading news</p>';
+    }
+}
+
+        async function addPublication(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('pubSubmitBtn');
+            const successMsg = document.getElementById('pubSuccess');
+            const errorMsg = document.getElementById('pubError');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Adding...';
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            try {
+                const pubData = {
+                    authors: document.getElementById('pubAuthors').value.trim(),
+                    title: document.getElementById('pubTitle').value.trim(),
+                    journal: document.getElementById('pubJournal').value.trim(),
+                    year: document.getElementById('pubYear').value
+                };
+                if (!pubData.authors || !pubData.title || !pubData.journal) throw new Error('All fields required');
+                await API.addPublication(pubData);
+                successMsg.textContent = 'Publication added successfully!';
+                successMsg.classList.add('show');
+                event.target.reset();
+                populateYearDropdown();
+                await loadPublications();
+                await loadAdminPublications();
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (error) {
+                errorMsg.textContent = error.message || 'Failed to add publication';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add Publication';
+            }
+        }
+
+        async function addPerson(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('personSubmitBtn');
+            const successMsg = document.getElementById('peopleSuccess');
+            const errorMsg = document.getElementById('peopleError');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Adding...';
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            try {
+                const photoInput = document.getElementById('personPhoto');
+                let photoData = null;
+                if (photoInput.files && photoInput.files[0]) {
+                    photoData = await fileToBase64(photoInput.files[0]);
+                }
+                const personData = {
+                    name: document.getElementById('personName').value.trim(),
+                    role: document.getElementById('personRole').value.trim(),
+                    email: document.getElementById('personEmail').value.trim(),
+                    category: document.getElementById('personCategory').value,
+                    photo: photoData
+                };
+                if (!personData.name || !personData.role || !personData.email) throw new Error('All required fields must be filled');
+                if (!personData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) throw new Error('Valid email required');
+                await API.addPerson(personData);
+                successMsg.textContent = 'Team member added successfully!';
+                successMsg.classList.add('show');
+                event.target.reset();
+                document.getElementById('personPhotoPreview').classList.remove('show');
+                await loadPeople();
+                await loadAdminPeople();
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (error) {
+                errorMsg.textContent = error.message || 'Failed to add team member';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add Team Member';
+            }
+        }
+
+        async function addNews(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('newsSubmitBtn');
+            const successMsg = document.getElementById('newsSuccess');
+            const errorMsg = document.getElementById('newsError');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Adding...';
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            try {
+                const newsData = {
+                    date: new Date(document.getElementById('newsDate').value),
+                    headline: document.getElementById('newsHeadline').value.trim(),
+                    content: document.getElementById('newsContent').value.trim(),
+                    tag: document.getElementById('newsTag').value
+                };
+                if (!newsData.headline || !newsData.content) throw new Error('All fields required');
+                if (isNaN(newsData.date.getTime())) throw new Error('Valid date required');
+                await API.addNews(newsData);
+                successMsg.textContent = 'News item added successfully!';
+                successMsg.classList.add('show');
+                event.target.reset();
+                document.getElementById('newsDate').value = new Date().toISOString().split('T')[0];
+                await loadLatestNews();
+                await loadAllNews();
+                await loadAdminNews();
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (error) {
+                errorMsg.textContent = error.message || 'Failed to add news item';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add News Item';
+            }
+        }
+
+        async function addResearchArea(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('researchSubmitBtn');
+            const successMsg = document.getElementById('researchSuccess');
+            const errorMsg = document.getElementById('researchError');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Adding...';
+            successMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            try {
+                const photoInput = document.getElementById('researchPhoto');
+                let photoData = null;
+                if (photoInput.files && photoInput.files[0]) {
+                    photoData = await fileToBase64(photoInput.files[0]);
+                }
+                const areaData = {
+                    title: document.getElementById('researchTitle').value.trim(),
+                    description: document.getElementById('researchDescription').value.trim(),
+                    photo: photoData
+                };
+                if (!areaData.title || !areaData.description) throw new Error('All required fields must be filled');
+                await API.addResearchArea(areaData);
+                successMsg.textContent = 'Research area added successfully!';
+                successMsg.classList.add('show');
+                event.target.reset();
+                document.getElementById('researchPhotoPreview').classList.remove('show');
+                await loadResearchAreas();
+                await loadAdminResearchAreas();
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (error) {
+                errorMsg.textContent = error.message || 'Failed to add research area';
+                errorMsg.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add Research Area';
+            }
+        }
+
+        async function deletePublication(id) {
+            if (!isLoggedIn || !confirm('Are you sure you want to delete this publication?')) return;
+            showLoading(true);
+            try {
+                await API.deletePublication(id);
+                await loadPublications();
+                await loadAdminPublications();
+            } catch (error) {
+                alert('Failed to delete publication: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function deletePerson(id) {
+            if (!isLoggedIn || !confirm('Are you sure you want to delete this person?')) return;
+            showLoading(true);
+            try {
+                await API.deletePerson(id);
+                await loadPeople();
+                await loadAdminPeople();
+            } catch (error) {
+                alert('Failed to delete person: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function deleteNews(id) {
+            if (!isLoggedIn || !confirm('Are you sure you want to delete this news item?')) return;
+            showLoading(true);
+            try {
+                await API.deleteNews(id);
+                await loadLatestNews();
+                await loadAllNews();
+                await loadAdminNews();
+            } catch (error) {
+                alert('Failed to delete news: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function deleteResearchArea(id) {
+            if (!isLoggedIn || !confirm('Are you sure you want to delete this research area?')) return;
+            showLoading(true);
+            try {
+                await API.deleteResearchArea(id);
+                await loadResearchAreas();
+                await loadAdminResearchAreas();
+            } catch (error) {
+                alert('Failed to delete research area: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('active', show);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.add('show');
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.classList.remove('show');
+            }
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
