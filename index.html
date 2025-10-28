@@ -1131,7 +1131,9 @@
             aboutParagraph2: 'We focus on designing sustainable synthetic routes, understanding reaction mechanisms at a molecular level, and developing novel catalytic systems.'
         };
 
-        const API_BASE_URL = 'http://192.168.1.147:5000/api';
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/api'
+    : 'http://192.168.1.147:5000/api';
 
         const TokenManager = {
             isAuthenticated: () => !!localStorage.getItem('authToken'),
@@ -2197,5 +2199,6 @@ function setupNavigation() {
 </body>
 
 </html>
+
 
 
